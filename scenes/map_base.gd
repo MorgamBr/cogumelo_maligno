@@ -21,7 +21,7 @@ func add_objects_from_gridobjects_to_grid() -> void:
 	for object in grid_objects_node.get_children() as Array[Node3D]:
 		var position_to_grid_x = roundi(object.position.x / X_STEP)
 		var position_to_grid_z = roundi(object.position.z / Z_STEP)
-		insert_in_grid(object, position_to_grid_x, position_to_grid_z)
+		insert_in_grid(object, position_to_grid_x, position_to_grid_z, false)
 
 
 ## Grabs the object on a given space of the grid if it has an object, otherwise returns null.
