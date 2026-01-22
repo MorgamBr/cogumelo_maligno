@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuwjeee0jti3f"]
+
+[ext_resource type="Script" uid="uid://cfk2egglpk61r" path="res://objects/object_base.gd" id="1_hyix4"]
+
+[node name="Object_Base" type="Node3D"]
+script = ExtResource("1_hyix4")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 7
