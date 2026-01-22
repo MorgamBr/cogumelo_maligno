@@ -1,4 +1,5 @@
 extends Node3D
+class_name GridController
 
 const X_STEP = 1
 const Y_STEP = 1

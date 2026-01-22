@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjl4erxcxp3cv"]
+
+[ext_resource type="PackedScene" uid="uid://bq24se683f5b1" path="res://objects/entities/player/bodies/inicialPlayer.tscn" id="1_rimap"]
+[ext_resource type="PackedScene" uid="uid://dwf6tcmffnhnn" path="res://scenes/map_base.tscn" id="2_scoih"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_scoih"]
+size = Vector3(10, 0.3, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_r6a75"]
+data = PackedVector3Array(-5, 0.14999999, 5, 5, 0.14999999, 5, -5, -0.14999999, 5, 5, 0.14999999, 5, 5, -0.14999999, 5, -5, -0.14999999, 5, 5, 0.14999999, -5, -5, 0.14999999, -5, 5, -0.14999999, -5, -5, 0.14999999, -5, -5, -0.14999999, -5, 5, -0.14999999, -5, 5, 0.14999999, 5, 5, 0.14999999, -5, 5, -0.14999999, 5, 5, 0.14999999, -5, 5, -0.14999999, -5, 5, -0.14999999, 5, -5, 0.14999999, -5, -5, 0.14999999, 5, -5, -0.14999999, -5, -5, 0.14999999, 5, -5, -0.14999999, 5, -5, -0.14999999, -5, 5, 0.14999999, 5, -5, 0.14999999, 5, 5, 0.14999999, -5, -5, 0.14999999, 5, -5, 0.14999999, -5, 5, 0.14999999, -5, -5, -0.14999999, 5, 5, -0.14999999, 5, -5, -0.14999999, -5, 5, -0.14999999, 5, 5, -0.14999999, -5, -5, -0.14999999, -5)
+
+[node name="TestLv" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_scoih")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("ConcavePolygonShape3D_r6a75")
+
+[node name="InicialPlayer" parent="." node_paths=PackedStringArray("gridRef") instance=ExtResource("1_rimap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+gridRef = NodePath("../Map_Base")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 3.9, 6)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 8, 0)
+
+[node name="Map_Base" parent="." instance=ExtResource("2_scoih")]
