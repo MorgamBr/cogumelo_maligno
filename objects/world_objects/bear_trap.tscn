@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi3dc17xgqmal"]
+
+[ext_resource type="PackedScene" uid="uid://cuwjeee0jti3f" path="res://objects/object_base.tscn" id="1_ecxb4"]
+[ext_resource type="Script" uid="uid://dk1wnbnq2oabt" path="res://objects/world_objects/bear_trap.gd" id="2_yfoe0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfoe0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfoe0"]
+albedo_color = Color(1, 0.3019608, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yfoe0"]
+material = SubResource("StandardMaterial3D_yfoe0")
+size = Vector3(1, 0.3, 1)
+
+[node name="Bear_Trap" instance=ExtResource("1_ecxb4")]
+script = ExtResource("2_yfoe0")
+object_size = Vector3(0, 0.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("BoxShape3D_yfoe0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_yfoe0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

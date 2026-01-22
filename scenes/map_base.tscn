@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmo607m8ljpq0" path="res://scenes/map_base.gd" id="1_4ctkk"]
 
-[node name="Map_Base" type="Node3D" node_paths=PackedStringArray("grid_map_node")]
+[node name="Map_Base" type="Node3D"]
 script = ExtResource("1_4ctkk")
-grid_map_node = NodePath("")
 
 [node name="GridObjects" type="Node3D" parent="."]
