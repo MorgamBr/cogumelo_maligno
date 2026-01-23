@@ -9,14 +9,22 @@ enum OBJECT_STATES {
 	BEING_CARRIED,
 }
 
+## The name of the object.
+@export var object_name: String = ""
+## The texture that will be displayed representing the object.
+@export var object_icon: Texture2D
+
 ## The current state of the object.
-var state: OBJECT_STATES :
+@export var state: OBJECT_STATES :
 	set(new_value):
 		state = _on_state_changed(new_value)
 ## The amount of interest that NPCs take on the object.
 var interest_amount: int :
 	set(new_value):
 		interest_amount = _on_interest_amount_changed(new_value)
+@export var is_heavy_load: bool :
+	set(new_value):
+		is_heavy_load = _on_is_heavy_load_changed(new_value)
 ## Used to indicate if the player has this on it's interaction aim.
 var is_being_looked_at: bool = false :
 	set(new_value):
@@ -48,36 +56,39 @@ func _on_can_be_carried_changed(new_value: bool) -> bool:
 func _on_interest_amount_changed(new_value: int) -> int:
 	return new_value
 
+func _on_is_heavy_load_changed(new_value: bool) -> bool:
+	return new_value
+
+
 func _on_state_changed(new_value: OBJECT_STATES) -> OBJECT_STATES:
+	if state == new_value:
+		return state
+	
 	match state:
 		OBJECT_STATES.ACTIVE:
-			can_player_interact = true
+			pass
 		OBJECT_STATES.INACTIVE:
-			can_player_interact = true
+			pass
 		OBJECT_STATES.INACCESSIBLE:
-			can_player_interact = false
 			is_being_looked_at = false
 		OBJECT_STATES.BEING_CARRIED:
-			can_player_interact = false
 			is_being_looked_at = false
-			area3d.monitoring = false
-			area3d.monitorable = false
 	return new_value
 
 
 ## Check if the entity can interact with the object.
 func can_interact(entity: Node3D) -> bool:
-	if can_player_interact:
+	if can_player_interact and state != OBJECT_STATES.INACCESSIBLE and state != OBJECT_STATES.BEING_CARRIED:
 		return true
 	return false
 
 ## Used by entities to interact with the object.
 func interact(entity: Node3D) -> void:
-	print("object interacted with")
+	print("object " + object_name + " interacted with")
 
 ## Check if the entity can interact with the object.
 func can_grab(entity: Node3D) -> bool:
-	if can_be_carried:
+	if can_be_carried and state != OBJECT_STATES.INACCESSIBLE and state != OBJECT_STATES.BEING_CARRIED:
 		return true
 	return false
 

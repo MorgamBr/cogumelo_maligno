@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bq24se683f5b1"]
+[gd_scene load_steps=33 format=4 uid="uid://bq24se683f5b1"]
 
 [ext_resource type="Script" uid="uid://bwpqtp0edmqf" path="res://objects/entities/player/bodies/inicial_player.gd" id="1_2vnpr"]
 
@@ -445,8 +445,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_blfa2")
 
-[node name="InicialPlayer" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6a75"]
+transparency = 1
+albedo_color = Color(0.2901961, 1, 1, 0.4509804)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vnpr"]
+material = SubResource("StandardMaterial3D_r6a75")
+
+[node name="InicialPlayer" type="CharacterBody3D" node_paths=PackedStringArray("cell_indicator")]
 script = ExtResource("1_2vnpr")
+cell_indicator = NodePath("CellIndicator")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.495, 0, 0, 0, 0.495, 0, 0, 0, 0.495, 0, -0.25840667, 0)
@@ -552,3 +560,6 @@ transform = Transform3D(-1, -1.6692827e-12, -6.212021e-06, 1.6692772e-12, -1, 8.
 transform = Transform3D(-0.5775473, 9.640866e-13, -3.587736e-06, -9.640896e-13, -0.5775473, 4.9459303e-13, -3.587736e-06, 4.94599e-13, 0.5775473, 2.4215343e-08, -0.40061927, -4.6291586e-08)
 mesh = SubResource("ArrayMesh_ti4f6")
 skeleton = NodePath("")
+
+[node name="CellIndicator" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2vnpr")

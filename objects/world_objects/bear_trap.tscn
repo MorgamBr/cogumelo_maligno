@@ -14,6 +14,10 @@ size = Vector3(1, 0.3, 1)
 
 [node name="Bear_Trap" instance=ExtResource("1_ecxb4")]
 script = ExtResource("2_yfoe0")
+object_name = "Bear Trap"
+is_heavy_load = null
+can_player_interact = null
+can_be_carried = null
 object_size = Vector3(0, 0.3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]

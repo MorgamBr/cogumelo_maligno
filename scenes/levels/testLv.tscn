@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjl4erxcxp3cv"]
+[gd_scene load_steps=6 format=3 uid="uid://bjl4erxcxp3cv"]
 
 [ext_resource type="PackedScene" uid="uid://bq24se683f5b1" path="res://objects/entities/player/bodies/inicialPlayer.tscn" id="1_rimap"]
-[ext_resource type="PackedScene" uid="uid://dwf6tcmffnhnn" path="res://scenes/map_base.tscn" id="2_scoih"]
+[ext_resource type="Script" uid="uid://dmo607m8ljpq0" path="res://scenes/map_base.gd" id="2_r6a75"]
+[ext_resource type="PackedScene" uid="uid://bi3dc17xgqmal" path="res://objects/world_objects/bear_trap.tscn" id="3_xhpyd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_scoih"]
 size = Vector3(10, 0.3, 10)
@@ -12,6 +13,7 @@ data = PackedVector3Array(-5, 0.14999999, 5, 5, 0.14999999, 5, -5, -0.14999999, 
 [node name="TestLv" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_scoih")
@@ -29,4 +31,37 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 8, 0)
 
-[node name="Map_Base" parent="." instance=ExtResource("2_scoih")]
+[node name="Map_Base" type="Node3D" parent="."]
+script = ExtResource("2_r6a75")
+
+[node name="GridObjects" type="Node3D" parent="Map_Base"]
+
+[node name="Bear_Trap" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 2)
+is_heavy_load = false
+can_player_interact = true
+can_be_carried = true
+
+[node name="Bear_Trap2" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 4)
+is_heavy_load = false
+can_player_interact = true
+can_be_carried = true
+
+[node name="Bear_Trap3" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 2)
+is_heavy_load = false
+can_player_interact = true
+can_be_carried = true
+
+[node name="Bear_Trap4" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 2)
+is_heavy_load = false
+can_player_interact = true
+can_be_carried = true
+
+[node name="Bear_Trap5" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -2)
+is_heavy_load = false
+can_player_interact = true
+can_be_carried = true
