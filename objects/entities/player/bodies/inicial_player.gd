@@ -21,7 +21,10 @@ var inventory_selected_slot: int = 0
 @export var inventory_max_size: int = 4
 var is_carrying_heavy_load: bool = false
 
-@export var speed = 2.0
+@export var normal_speed: float = 2.0
+var speed: float = 2.0
+
+var is_locked: bool = false
 
 @export var cell_indicator: Node3D
 
@@ -36,10 +39,10 @@ func _physics_process(delta: float) -> void:
 	Move(input_dir)
 	CheckGrid(input_dir)
 	
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and can_make_interactions():
 		interact_with_obj()
 	
-	if Input.is_action_just_pressed("place_grab"):
+	if Input.is_action_just_pressed("place_grab") and can_make_interactions():
 		if objBeingLookedAt != null:
 			grab_obj_being_looked()
 		else:
@@ -63,7 +66,7 @@ func Move(dir: Vector2) -> void:
 	velocity = Vector3(lerpf(velocity.x, dir.x * speed, playerAc),
 						velocity.y,
 						lerpf(velocity.z, dir.y * speed, playerAc))
-	if dir != Vector2.ZERO:
+	if dir != Vector2.ZERO and speed > 0.0:
 		last_dir = dir
 	var ang = atan2(last_dir.x, last_dir.y);
 	rotation.y = lerp_angle(rotation.y, ang, turnAc);
@@ -110,6 +113,11 @@ func CheckGrid(input: Vector2) -> void:
 			objBeingLookedAt.is_being_looked_at = false
 		objBeingLookedAt = null
 #endregion
+
+
+## Check to see if anything is impeding the entity of interacting or grabbing/placing items.
+func can_make_interactions() -> bool:
+	return !is_locked
 
 
 ## Tries to interact with the object being looked at.
@@ -162,6 +170,19 @@ func inventory_find_free_slot() -> int:
 		elif inventory[i] == null:
 			return i
 	return -1
+
+#Objects interactions with entity.
+#region
+func lock() -> void:
+	is_locked = true
+	speed = 0.0
+
+func unlock() -> void:
+	if is_locked:
+		speed = normal_speed
+		is_locked = false
+#endregion
+
 
 #transformar o player principal em classe
 # e fazer ele trocar de lugar

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjl4erxcxp3cv"]
+[gd_scene load_steps=7 format=3 uid="uid://bjl4erxcxp3cv"]
 
 [ext_resource type="PackedScene" uid="uid://bq24se683f5b1" path="res://objects/entities/player/bodies/inicialPlayer.tscn" id="1_rimap"]
 [ext_resource type="Script" uid="uid://dmo607m8ljpq0" path="res://scenes/map_base.gd" id="2_r6a75"]
 [ext_resource type="PackedScene" uid="uid://bi3dc17xgqmal" path="res://objects/world_objects/bear_trap.tscn" id="3_xhpyd"]
+[ext_resource type="PackedScene" uid="uid://xkbbbdpb5jkl" path="res://objects/world_objects/button_objects/red_button.tscn" id="4_xhpyd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_scoih"]
 size = Vector3(10, 0.3, 10)
@@ -38,30 +39,18 @@ script = ExtResource("2_r6a75")
 
 [node name="Bear_Trap" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 2)
-is_heavy_load = false
-can_player_interact = true
-can_be_carried = true
 
 [node name="Bear_Trap2" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 4)
-is_heavy_load = false
-can_player_interact = true
-can_be_carried = true
 
 [node name="Bear_Trap3" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 2)
-is_heavy_load = false
-can_player_interact = true
-can_be_carried = true
 
 [node name="Bear_Trap4" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 2)
-is_heavy_load = false
-can_player_interact = true
-can_be_carried = true
 
 [node name="Bear_Trap5" parent="Map_Base/GridObjects" instance=ExtResource("3_xhpyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -2)
-is_heavy_load = false
-can_player_interact = true
-can_be_carried = true
+
+[node name="Red_Button" parent="Map_Base/GridObjects" instance=ExtResource("4_xhpyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 0)

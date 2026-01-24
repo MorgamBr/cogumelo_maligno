@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6nchkf5blhec"]
+
+[ext_resource type="PackedScene" uid="uid://cuwjeee0jti3f" path="res://objects/object_base.tscn" id="1_jj17h"]
+[ext_resource type="Script" uid="uid://bb6px2su2rwu" path="res://objects/world_objects/button_objects/button_object.gd" id="2_uke0f"]
+
+[node name="Button_Object" instance=ExtResource("1_jj17h")]
+script = ExtResource("2_uke0f")
+is_button_pressed = false
+button_type = 0
+reset_time = 5.0
+object_name = "Button"
+can_be_carried = false

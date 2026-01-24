@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dk1wnbnq2oabt" path="res://objects/world_objects/bear_trap.gd" id="2_yfoe0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yfoe0"]
+size = Vector3(0.8, 1, 0.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfoe0"]
 albedo_color = Color(1, 0.3019608, 1, 1)
@@ -14,16 +15,23 @@ size = Vector3(1, 0.3, 1)
 
 [node name="Bear_Trap" instance=ExtResource("1_ecxb4")]
 script = ExtResource("2_yfoe0")
+stuck_time = 10.0
 object_name = "Bear Trap"
-is_heavy_load = null
-can_player_interact = null
-can_be_carried = null
 object_size = Vector3(0, 0.3, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="0"]
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 shape = SubResource("BoxShape3D_yfoe0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 mesh = SubResource("BoxMesh_yfoe0")
 
+[node name="Timer" type="Timer" parent="." index="2"]
+one_shot = true
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

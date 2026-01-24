@@ -4,7 +4,3 @@
 
 [node name="Object_Base" type="Node3D"]
 script = ExtResource("1_hyix4")
-
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 4
-collision_mask = 7

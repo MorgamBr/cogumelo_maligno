@@ -40,9 +40,6 @@ var is_being_looked_at: bool = false :
 ## The object grid's size, meaning how many grids this object occupies.
 @export var object_size: Vector3
 
-## The area used to check world collisions.
-@onready var area3d: Area3D = $Area3D
-
 
 func _on_is_being_looked_at_changed(new_value: bool) -> bool:
 	return new_value
@@ -77,17 +74,17 @@ func _on_state_changed(new_value: OBJECT_STATES) -> OBJECT_STATES:
 
 
 ## Check if the entity can interact with the object.
-func can_interact(entity: Node3D) -> bool:
+func can_interact(entity: Entity) -> bool:
 	if can_player_interact and state != OBJECT_STATES.INACCESSIBLE and state != OBJECT_STATES.BEING_CARRIED:
 		return true
 	return false
 
 ## Used by entities to interact with the object.
-func interact(entity: Node3D) -> void:
+func interact(entity: Entity) -> void:
 	print("object " + object_name + " interacted with")
 
 ## Check if the entity can interact with the object.
-func can_grab(entity: Node3D) -> bool:
+func can_grab(entity: Entity) -> bool:
 	if can_be_carried and state != OBJECT_STATES.INACCESSIBLE and state != OBJECT_STATES.BEING_CARRIED:
 		return true
 	return false

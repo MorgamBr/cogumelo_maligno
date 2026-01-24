@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://xkbbbdpb5jkl"]
+
+[ext_resource type="PackedScene" uid="uid://b6nchkf5blhec" path="res://objects/world_objects/button_objects/button_object.tscn" id="1_ity1f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8yrnj"]
+size = Vector3(0.6, 1, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ity1f"]
+size = Vector3(0.6, 0.8, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ity1f"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8yrnj"]
+material = SubResource("StandardMaterial3D_ity1f")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.1
+
+[node name="Red_Button" instance=ExtResource("1_ity1f")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_8yrnj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_ity1f")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34284413, 0)
+mesh = SubResource("CylinderMesh_8yrnj")
